@@ -15,28 +15,29 @@ int Evklid(int x, int y){
 }
 
 int main(){
-    int A[1024][1024];
-    int B[1024][1024];
-    int C[1024][1024];
-    int n = 0, d =0;
+    int A[20][20];
+    int B[20][20];
+    unsigned int n = 0, d =0;
     scanf("%d %d", &n, &d);
     for (unsigned int i = 0; i < n; i++) {
         for (unsigned int j = 0; j < n; j++) {
            A[i][j] = Evklid(i + 1, j +1 );
-           B[i][j] = Evklid(n - i + 1, n -j +1 );
+           B[i][j] = Evklid(n - i + 1, n - j + 1);
         }
     }
     
-    int coun = 0;
+    unsigned int coun = 0;
     int sum = 0;
     for (unsigned int i = 0; i < n; i++) {
         for (unsigned int j = 0; j < n; j++) {
-           for(unsigned k = 0; k < n; ) {
+           for(unsigned k = 0; k < n; k++ ) {
                 sum += A[i][k] * B[k][j];
-                if (sum % d ==0) coun++;
+                if (sum % d == 0) coun++;
            }
         }
     }
+
+    printf("%u", coun);
 
 return 0;
 
