@@ -12,7 +12,7 @@ int main(){
     }
 
     int log_res;
-    scanf("%x", &alog_res);
+    scanf("%x", &log_res);
 
     int page_number = (log_res >> 26) & 0x3F;
     int page_off_set = log_res & 0x3FFFFFF;
