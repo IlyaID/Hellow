@@ -4,25 +4,25 @@
 
 int main(){
 
-    char a[1001], b[1001], c[1001];
-    scanf("%s", &a);
-    scanf("%s", &b);
+    char s1[1001], s2[1001], c[1001];
+    scanf("%s", &s1);
+    scanf("%s", &s2);
     
 
-    int len_a = strlen(a);
-    int len_b = strlen(b);
+    int len_1 = strlen(s1);
+    int len_2 = strlen(s2);
     
 
 
-    int i = len_a - 1;
-    int j = len_b - 1;
+    int i = len_1 - 1;
+    int j = len_2 - 1;
     int len_c = 0;
     int um = 0;
 
     while(i >= 0 && j >= 0){
 
-        int x = a[i] - '0';
-        int y = b[j] - '0';
+        int x = s1[i] - '0';
+        int y = s2[j] - '0';
         c[len_c++] = (x + y + um) % 2;
         um = (x + y + um) / 2;
         i--;
@@ -30,14 +30,14 @@ int main(){
     }
         
     while(i >= 0){
-        int x = a[i] - '0';
+        int x = s1[i] - '0';
         c[len_c++] = (x + um) % 2;
         um = (x + um) / 2;
         i--;
     }
 
     while(j >= 0){
-        int y = b[j] - '0';
+        int y = s2[j] - '0';
         c[len_c++] = (y + um) % 2;
         um = (y + um) / 2;
         j--;
