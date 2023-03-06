@@ -29,40 +29,42 @@ IR (4) - вывести все регистры
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
+
 #ifndef REGISTERS
 #define REGISTERS 4
 #endif //REGISTERS
  
 int main() {
-    __uint_least8_t REG[REGISTERS] = { 0, 0, 0, 0};
+    uint_least8_t REG[REGISTERS] = { 0, 0, 0, 0};
     if (REGISTERS > 4){
         printf("-1");
         return 0;
     }
 
     unsigned int input = 0;
-    scanf("%u ", &input);
+    scanf("%u", &input);
         while (input != 0){
-            scanf("%u ", &input);
+            scanf("%u", &input);
             if( input == 3){
-                scanf("%u ", &input);
+                scanf("%u", &input);
                 if (input - 5 >= REGISTERS) {
                     printf("-1");
                     return 0;
                 }
                 unsigned int tmp = input - 5;
-                scanf("%u ", &input);
+                scanf("%u", &input);
                 REG[tmp] = input;
                 continue;
             }
             if( input == 1){
-                scanf("%u ", &input);
+                scanf("%u", &input);
                 if (input - 5 >= REGISTERS) {
                     printf("-1");
                     return 0;
                 }
                 unsigned int tmp = input - 5;
-                scanf("%u ", &input);
+                scanf("%u", &input);
                 if (input - 5 >= REGISTERS) {
                     printf("-1");
                     return 0;
@@ -71,7 +73,7 @@ int main() {
                 continue;
             }
             if( input == 2){
-                scanf("%u ", &input);
+                scanf("%u", &input);
                 if (input - 5 >= REGISTERS){
                     printf("-1");
                     return 0;
