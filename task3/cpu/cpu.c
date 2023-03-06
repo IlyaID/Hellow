@@ -69,7 +69,7 @@ int main() {
                     printf("-1");
                     return 0;
                 }
-                REG[tmp] += REG[input];
+                REG[tmp] += REG[input - 5];
                 continue;
             }
             if( input == 2){
@@ -84,7 +84,7 @@ int main() {
                     printf("-1");
                     return 0;
                 }
-                REG[tmp] -= REG[input];
+                REG[tmp] -= REG[input - 5];
                 continue;
             }
             if (input == 4){
