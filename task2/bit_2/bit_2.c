@@ -3,9 +3,9 @@
 
 int main(int argc, char *argv[], char *envp[])
 {
-    int x;
-    sscanf(getenv("CODE"), "%x", &x);
-    if(x & (1 << 2))
+    int input;
+    sscanf(getenv("CODE="), "%x", &input);
+    if(input & (1 << 2))
         printf("ha");
     else 
         printf("nh");
