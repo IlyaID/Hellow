@@ -15,7 +15,7 @@ void arabic_to_Rome(int number, char* result) {
     }
 }
 
-int Rome_to_arabic(char* number) {
+int Rome_to_arabic(char number[]) {
  
     const char* str_rome[13] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
     int values_rome[13] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
@@ -23,8 +23,9 @@ int Rome_to_arabic(char* number) {
     int result = 0;
     for (int i = 0; i < 64; i++) {
         for (int j = 0; j < 13; j++){
-            if (strchr(str_rome[j], number[i]) == 0) {
+            if (str_rome[j] == number[i]) {
                 result += values_rome[j];
+                break;
             }
         }
     }
