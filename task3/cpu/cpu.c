@@ -27,78 +27,74 @@ IR (4) - вывести все регистры
 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-
-#ifndef REGISTERS
-#define REGISTERS 4
-#endif //REGISTERS
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <stdint.h> 
  
-int main() {
-    uint_least8_t REG[REGISTERS] = { 0, 0, 0, 0};
-    if (REGISTERS > 4){
-        printf("-1");
-        return 0;
-    }
-
-    unsigned int input = 0;
-    scanf("%u", &input);
-        while (input != 0){
-            scanf("%u", &input);
-            if( input == 3){
-                scanf("%u", &input);
-                if (input - 5 >= REGISTERS) {
-                    printf("-1");
-                    return 0;
-                }
-                unsigned int tmp = input - 5;
-                scanf("%u", &input);
-                REG[tmp] = input;
-                continue;
-            }
-            if( input == 1){
-                scanf("%u", &input);
-                if (input - 5 >= REGISTERS) {
-                    printf("-1");
-                    return 0;
-                }
-                unsigned int tmp = input - 5;
-                scanf("%u", &input);
-                if (input - 5 >= REGISTERS) {
-                    printf("-1");
-                    return 0;
-                }
-                REG[tmp] += REG[input - 5];
-                continue;
-            }
-            if( input == 2){
-                scanf("%u", &input);
-                if (input - 5 >= REGISTERS){
-                    printf("-1");
-                    return 0;
-                }
-                unsigned int tmp = input - 5;
-                scanf("%u ", &input);
-                if (input - 5 >= REGISTERS){
-                    printf("-1");
-                    return 0;
-                }
-                REG[tmp] -= REG[input - 5];
-                continue;
-            }
-            if (input == 4){
-                for (unsigned int i = 0; i < REGISTERS; i++){
-                    printf("%d ", REG[i]);
-                }
-                printf("\n");
-                continue;
-            }
+#ifndef REGISTERS 
+#define REGISTERS 4 
+#endif 
 
 
-        }
-        return 0;
+int main() { 
+    uint_least8_t REG[REGISTERS] = {0, 0, 0, 0}; 
+    if(REGISTERS > 4) { 
+        printf("-1"); 
+        return 0; 
+    } 
+     
+    int x = 1; 
+    while(x != 0 ) { 
+        scanf("%d", &x); 
+        if (x == 3) { 
+            scanf("%d", &x); 
+            if(x-5 >= REGISTERS) { 
+                printf("-1"); 
+                return 0; 
+            } 
+            int y = x - 5; 
+            scanf("%d", &x); 
+            REG[y] = x; 
+            continue; 
+        } 
+        if (x == 1) { 
+            scanf("%d", &x); 
+            if(x-5 >= REGISTERS) { 
+                printf("-1"); 
+                return 0; 
+            } 
+            int y = x - 5; 
+            scanf("%d", &x); 
+            if(y >= REGISTERS) { 
+                printf("-1"); 
+                return 0; 
+            } 
+            REG[y] += REG[x-5]; 
+            continue; 
+        } 
+        if (x == 2) { 
+            scanf("%d", &x); 
+            if(x-5 >= REGISTERS) { 
+                printf("-1"); 
+                return 0; 
+            } 
+            int y = x - 5; 
+            scanf("%d", &x); 
+            if(y >= REGISTERS) { 
+                printf("-1"); 
+                return 0;    
+            } 
+            REG[y] -= REG[x-5]; 
+            continue; 
+        } 
+        if (x == 4) { 
+            for(int i = 0; i < REGISTERS; i++) { 
+                printf("%d ", REG[i]); 
+            } 
+            printf("\n"); 
+            continue; 
+        } 
+    } 
+ 
+    return 0; 
 }
-
- 
- 
