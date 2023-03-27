@@ -5,7 +5,7 @@ mov %eax, %edx;
 
 cmp $1, %eax
 jne loop_start
-je loop_end_one
+je loop_end
 
 loop_start:
 inc %ebx;
@@ -17,8 +17,3 @@ je loop_end
 
 loop_end:
 mov %eax, %ebx;
-ret
-
-loop_end_one:
-mov %eax, %ebx;
-ret
