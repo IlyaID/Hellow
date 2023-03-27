@@ -9,6 +9,7 @@ cmp $0,%rcx
 je loop_end
 movl (%rax,%rcx,8), %rdx
 add %rbx, %rdx
+dec %rcx
 jen loop_start
 
 loop_end
