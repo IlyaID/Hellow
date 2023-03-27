@@ -8,7 +8,7 @@ int Evklid(int x, int y){
             Evklid(x -y, y);
         }
         else {
-            Evklid(x, y - x);;
+            Evklid(x, y - x); 
         }
      }
      else {
