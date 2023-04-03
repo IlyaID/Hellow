@@ -14,11 +14,11 @@ section .text
         call scanf
         sub esp, 8
 
-        xor edx, edx
-        xor ebx, ebx
+       
         mov eax, dword [b]
-        mov ebx, dword [a]
-        div ebx
+        cdq
+        idiv dword [a]
+        
 
         push eax
         push dword msg2
