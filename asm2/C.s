@@ -40,3 +40,4 @@ section .data
 
 section .bss
     a resd 1
+    b resd 1
