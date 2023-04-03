@@ -14,8 +14,8 @@ section .text
         call scanf
         sub esp, 8
 
-        mov eax, dword [b]
-        sub eax, dword [a]
+        mov eax, dword [a]
+        div dword [b]
 
         push eax
         push dword msg2
