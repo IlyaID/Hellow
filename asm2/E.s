@@ -20,7 +20,7 @@ section .text
         mov ebx, dword [a]
         div ebx
 
-        push eax
+        push edx
         push dword msg2
 
         call printf
