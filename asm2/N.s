@@ -56,6 +56,7 @@ back3:
 
 ifend:
         mov [rbx+r12*8], r8
+
         add r12, 1
         cmp r12, r13
         jl back3
@@ -66,7 +67,7 @@ ifend:
 
 back4:
         mov rdi, fmt_p
-        lea rsi, [rbx+r12*8]
+        mov rsi, [rbx+r12*8]
         mov rax, 0
         call printf
         add r12, 1
