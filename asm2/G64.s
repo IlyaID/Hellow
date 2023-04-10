@@ -1,73 +1,43 @@
-global main
-
-extern exit
-extern puts
-extern printf
-extern scanf
-
-section .data
-
-    msg1 : db "NO\n", 0xA, 0
-    msg2 : db "YES\n", 0xA, 0
-
-
-section .bss
-    a resd 1
-    b resd 1
-
 section .text
+    default rel
+    extern puts
+    extern scanf
+    global main
 
     main:
-        push dword a
-        push dword b
-        push dword msg1
-        call scanf
-        sub rsp, 8
-
-        xor rdx, rdx
-        xor rbx, rbx
-        xor rcx, rcx
-        mov rax, dword [b]
-        mov rbx, dword [a]
-        mov rcx, 0xffffffffffffffff
+        push rbp
+       
+        lea rdx, [buf]
+        add rdx, 0x8
+        lea rsi, [buf]
+        lea rdi, [format]
+        xor eax, eax
+        call scanf wrt ..plt
+        
+        mov rax, [buf]
+        mov rbx, [buf+0x8]
         add rax, rbx
-        cmp rax, rcx
-        jl less
-        jg more
-        je equal
-less:
 
-        push dword msg1
+        jc load_yes
+        lea rdi, [no]
+        jmp output
+        
+load_yes:     
+        lea rdi, [yes]
+        
+output:
+        call puts wrt ..plt
 
-        call printf
-        add rsp, 8
+        pop rbp
+        xor rax, rax
+        ret
 
-        push dword 0
-        call exit
 
-ret
 
-more:
+section .data
+    format db "%llu %llu", 0x0
+    yes db "YES", 0x0
+    no db "NO", 0x0
+    buf dq 0,0
 
-        push dword msg2
-
-        call printf
-        add rsp, 8
-
-        push dword 0
-        call exit
-
-ret
-
-equal:
-
-        push dword msg2
-
-        call printf
-        add rsp, 8
-
-        push dword 0
-        call exit
-
-ret
 
