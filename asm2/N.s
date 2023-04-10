@@ -17,7 +17,7 @@ section .text
 main:
         mov rbx, arr1
         mov r12, 0
-        mov r13, 0
+        mov r13, 8
 
 back1:
         mov rdi, fmt_s
