@@ -1,6 +1,6 @@
 section .data
     fmt_s: db "%u", 0
-    fmt_p: db "%u", 0
+    fmt_p: db "%u ", 0
 
 section .bss
 
