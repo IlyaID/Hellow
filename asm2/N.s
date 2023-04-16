@@ -3,6 +3,7 @@ section .data
     fmt_p: db "%u ", 0
 
 section .bss
+        
 
     arr1 resq 8 
     arr2 resq 8 
