@@ -16,11 +16,13 @@ section .text
         sub esp, 8
 
         mov eax, dword [a]
-        shl eax, 1
-        shr eax ,1
+        ;and eax, 0x7FFFFFFF
+        shl eax, 2
+        shr eax ,2
                 
         push eax
-        push dword b
+        push dword [b]
+        
         push dword msg2
 
         call printf
