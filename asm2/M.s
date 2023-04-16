@@ -10,16 +10,17 @@ section .text
 
     main:
         push dword a
+        push dword b
         push dword msg1
         call scanf
         sub esp, 8
 
         mov eax, dword [a]
-        mov ebx, dword [a]
-        xor eax, 0x80000000
-        and eax, ebx
-        
+        shl eax, 1
+        shr eax ,1
+                
         push eax
+        push dword b
         push dword msg2
 
         call printf
@@ -32,8 +33,8 @@ ret
 
 section .data
 
-    msg1 : db "%d", 0
-    msg2 : db "%d", 0xA, 0
+    msg1 : db "%d.%d", 0
+    msg2 : db "%d.%d", 0xA, 0
 
 
 section .bss
