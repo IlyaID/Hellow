@@ -13,7 +13,13 @@ add rax, rdx
 
 ;Task b) b = (a - 500000) % 10;
 
-;
+;a = rbx = 'A'
+mov rdx, 500000
+mov rbx, 10
+sub rax, rdx
+xor rdx, rdx
+idiv rbx
 
 
+;rdx = b = (a - 500000) % 10;
 
