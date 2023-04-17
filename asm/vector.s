@@ -8,7 +8,7 @@ loop_start:
 cmp $0,%rcx 
 je loop_end
 mov (%rax,%rcx,4), %rdx
-lea (%rax,%rdx,4) , %rbx;
+lea (%rdx,%rdx,1) , %rbx;
 dec %rcx
 cmp $0,%rcx 
 jne loop_start
