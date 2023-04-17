@@ -7,9 +7,11 @@ xor %rbx, %rbx
 loop_start:
 cmp $0,%rcx 
 je loop_end
-movl (%rax,%rcx,8), %rdx
-add %rbx, %rdx
+mov (%rax,%rcx,4), %rdx
+lea (%rax,%rdx,4) , %rbx;
 dec %rcx
-jen loop_start
+cmp $0,%rcx 
+jne loop_start
 
-loop_end
+loop_end:
+    ret
