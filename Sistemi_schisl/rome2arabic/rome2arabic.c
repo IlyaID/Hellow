@@ -22,7 +22,7 @@ int Rome_to_arabic(char number[]) {
  
     int result = 0;
     for (int i = 0; i < 64; i++) {
-        for (int j = 0; j < 13; j++){
+        for (int j = 0; j < 13; j++) {
             if (str_rome[j] == number[i]) {
                 result += values_rome[j];
                 break;

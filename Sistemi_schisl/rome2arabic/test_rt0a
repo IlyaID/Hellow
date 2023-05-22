@@ -1,0 +1,123 @@
+#include  "stdio.h"
+#include  "bool.h"
+
+
+
+int lookahead=0;                                //считанный символ
+int tmp=0,sum=0;                                //значение предыдущего символа, сумма
+int repetition=0;                               //количество повторов символов 
+ 
+void error();                                   //Сообщение об ошибке  
+bool validterm(int t,char str[],int counter);   //проверка на допустимость символа 
+void validation();
+ 
+void term();                                    //Реализация граматики
+void rest(int t);
+void expr();                        
+ 
+void main() 
+{ 
+  expr(); 
+  printf("%i",sum);
+  getch();
+} 
+ 
+ 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Реализация граматики
+//EXPR
+void expr() 
+{ 
+  term();
+  rest(lookahead);   
+} 
+ 
+//TERM
+void term()
+{
+    if(tmp==lookahead) repetition++;            //считаем количество повтров символов
+    else repetition=0;
+ 
+    if(lookahead=='I') {        
+        sum+=1;                     //I
+        tmp='I';
+    }    
+    else if(lookahead=='V') { 
+        if (tmp=='I') sum+=3;       //I TERM1
+        else sum+=5;                //TERM1
+        tmp='V';
+    }    
+    else if(lookahead=='X') { 
+        if (tmp=='I') sum+=8;       //I TERM1
+        else sum+=10;               //TERM1
+        tmp='X';
+    } 
+    else if(lookahead=='L') { 
+        if (tmp=='X') sum+=30;      //X TERM2
+        else sum+=50;               //TERM2
+        tmp='L';
+    }    
+    else if(lookahead=='C') { 
+        if (tmp=='X') sum+=80;      //X TERM2
+        else sum+=100;              //TERM2
+        tmp='C';
+    }    
+    else if(lookahead=='D') { 
+        if (tmp=='C') sum+=300;     //C TERM3
+        else sum+=500;              //TERM3
+        tmp='D';
+    }    
+    else if(lookahead=='M') { 
+        if (tmp=='C') sum+=800;     //C TERM3
+        else sum+=1000;             //TERM3     
+        tmp='M';
+    }
+ 
+}
+ 
+//REST
+void rest(int t) 
+{ 
+  if ((lookahead=getchar())!='\n'){  // E 
+       validation();
+       term();                       //TERM REST
+       rest(lookahead); 
+  }
+} 
+ 
+ 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Обработка и поиск ошибок
+ 
+//Проверка на допустимость символа
+bool validterm(int ch,char str[],int counter)
+{   
+    for(int i=0;i<counter;i++)
+        if (ch==str[i]) return true;
+    return false;
+}
+ 
+//сообщение об ошибке
+void error() 
+{ 
+    printf("Sintax error\n");
+    getch();
+    exit(1);  
+} 
+ 
+void validation()
+{
+       if (!validterm(lookahead,"IVXLCDM",7)) error();              //проверка на допустимость символа
+       if(repetition>2) error();                                    //проверка на количество повторений
+       if (lookahead==tmp && validterm(lookahead,"VLD",3))error();  //Символы VLD не могут повторяться                            
+       if (lookahead=='M' && validterm(tmp,"IVXLD",5)) error();     //проверка выполнения правил вычитания
+       if (lookahead=='D' && validterm(tmp,"IVXL",4)) error();
+       if (lookahead=='C' && validterm(tmp,"IVL",3)) error();
+       if (lookahead=='L' && validterm(tmp,"IV",2)) error();
+       if (lookahead=='X' && tmp=='V') error();
+       //проверка на количество повторений в правилах вычетания
+       if (repetition>0 && tmp=='I' && validterm(lookahead,"VXLCDM",6)) error();
+       if (repetition>0 && tmp=='X' && validterm(lookahead,"LCDM",4)) error();
+       if (repetition>0 && tmp=='C' && validterm(lookahead,"DM",2)) error();
+ 
+ }
